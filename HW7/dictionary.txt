@@ -1,0 +1,14 @@
+welcome 1
+to 2
+data 3
+structure 4
+and 5
+algorithm 6
+their 1
+there 2
+answer 3
+bye 5
+the 4
+a 6
+any 7
+by 8
