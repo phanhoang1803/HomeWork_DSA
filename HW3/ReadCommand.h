@@ -3,5 +3,3 @@
 #include "DataProcessing.h"
 
 void readCommand(int argc, char* argv[]);
-
-

@@ -16,7 +16,8 @@ void SparseTable::makeSparseTable(vector<int> data, int (*p)(int, int)) {
 	// Set size of table
 	for (int i = 0; i < _rows; i++) {
 		_ST[i].resize(_cols);
-		// Of course, p(data[i,..., i + 2^0 - 1]) = p(data[i,...,i]) = data[i];
+		// Of course, interval = 2^0 = 1
+		// p(data[i,..., i + interval - 1]) = p(data[i,...,i]) = data[i];
 		_ST[i][0] = data[i];	
 	}
 	

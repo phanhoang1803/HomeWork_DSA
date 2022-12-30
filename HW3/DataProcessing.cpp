@@ -35,19 +35,12 @@ bool DataProcessing::readTables() {
 	reader >> numTables;
 
 	for(int i = 0; i < numTables; i++){
-		// A MIN rows cols
-		// data
 		string tableName, tableType;
 		int rows, cols;
-		//reader >> ws;
-		//getline(reader, tableName);
-		//reader >> ws;
-		//getline(reader, tableType);
-		reader >> tableName;
-		reader >> tableType;
-		reader >> rows;
-		reader >> cols;
-		//cout << tableName << endl << tableType << endl << rows << endl << cols << endl;
+
+		// A MIN rows cols
+		// data
+		reader >> tableName >> tableType >> rows >> cols;
 
 		_tableNames.push_back(tableName);
 		_tableTypes.push_back(tableType);
@@ -87,18 +80,20 @@ void DataProcessing::makeSparseTable(string tableName, string tableType, vector<
 		p = gcd;
 	st.makeSparseTable(numberList, p);
 
-
+	// If the number of tables is less than 5 and don't have the same name.
 	if (i == _tableNames.size()) {
 		_tableNames.push_back(tableName);
 		_tableTypes.push_back(tableType);
 		_stl.push_back(st);
 	}
+	// If same table name.
 	else {
 		_tableNames[i] = tableName;
 		_tableTypes[i] = tableType;
 		_stl[i] = st;
 	}
 
+	// Save the table.
 	writeTables();
 }
 

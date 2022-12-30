@@ -25,11 +25,14 @@ void readCommand(int argc, char* argv[]) {
 	request = sargv[1];
 	tableName = sargv[2];
 	tableType = sargv[3];
+
+	// Make table
 	if (request == "make") {
 		for (int i = 4; i < argc; i++)
 			numberList.push_back(stoi(sargv[i]));
 		dp.makeSparseTable(tableName, tableType, numberList);
 	}
+	// Query table
 	else if (request == "query") {
 		L = stoi(sargv[3]);
 		R = stoi(sargv[4]);
