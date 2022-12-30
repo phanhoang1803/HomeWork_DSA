@@ -2,7 +2,7 @@
 
 // Left child : 2i + 1
 // Right child: 2i + 2
-// Parent     : i/2
+// Parent     : (i - 1)/2
 
 template <class T>
 void swap1(T& a, T& b) {
@@ -18,7 +18,6 @@ void PrintPriorityQueue(PQBMH p) {
 		cout << "\t" << i << ". ID = " << t.ID << ", Order = " << t.order << ", Priority = " << t.priority << ".\n";
 	}
 }
-
 void DemoPQByMinHeap() {
 	PQBMH p;
 	string ID;
@@ -45,10 +44,6 @@ void DemoPQByMinHeap() {
 	}
 	PrintPriorityQueue(p); cout << endl;
 
-	/*Extract(p);
-	cout << "After extracting. ";
-	PrintPriorityQueue(p); cout << endl;*/
-
 	while (1) {
 		cout << "Enter ID of the element you want to remove.\n\tID = ";
 		cin >> ws;
@@ -57,15 +52,6 @@ void DemoPQByMinHeap() {
 		cout << "After removing the element have ID(" << ID << "). ";
 		PrintPriorityQueue(p); cout << endl;
 	}
-
-	/*cout << "Enter information of the element you want to change priority.\n\tID = ";
-	cin >> ws;
-	getline(cin, ID);
-	cout << "\tPriority = ";
-	cin >> prior;
-	changePriority(p, ID, prior);
-	cout << "After changing the priority of the element have ID(" << ID << "). ";
-	PrintPriorityQueue(p); cout << endl;*/
 }
 
 void MinHeapify(vector<Information>& heap, int l, int r) {
@@ -74,7 +60,8 @@ void MinHeapify(vector<Information>& heap, int l, int r) {
 
 	while (j <= r) {
 		if (j < r)
-			if (heap[j + 1].priority < heap[j].priority) // Get index of the element has less priority value.
+			// Get index of the element has less priority value.
+			if (heap[j + 1].priority < heap[j].priority) 
 				j++;
 		
 		if (heap[i].priority <= heap[j].priority)
@@ -87,7 +74,8 @@ void MinHeapify(vector<Information>& heap, int l, int r) {
 }
 
 void IncreasingHeap(vector<Information>& heap, int i) {
-	int parent = (i - 1) / 2; // Index parent of i
+	// Get index parent of i.
+	int parent = (i - 1) / 2; 
 
 	while (i > 0 && heap[i].priority < heap[parent].priority) {
 		swap1(heap[i], heap[parent]);
@@ -109,7 +97,7 @@ bool isEmpty(PQBMH p) {
 
 void Insert(PQBMH& p, string ID, int priority) {
 	int size = p.heap.size();
-	//cout << size << endl;
+	// Push data to the end of the heap.
 	p.heap.push_back(Information{ ID, size, priority });
 
 	// Fix the heap from the recently added element to top of the heap.

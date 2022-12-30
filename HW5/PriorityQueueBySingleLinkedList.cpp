@@ -16,7 +16,8 @@ pref getNode(const char* ID, int priority) {
 }
 
 void initPQBSLL(PQBSLL& p) {
-	p.head = getNode("", -1);	// Fake node
+	// Initialize a fake node.
+	p.head = getNode("", -1);
 }
 
 void PrintPriorityQueue(PQBSLL p) {
@@ -29,7 +30,6 @@ void PrintPriorityQueue(PQBSLL p) {
 void DemoPQBySingleLinkedList() {
 	PQBSLL p;
 	initPQBSLL(p);
-	//char* ID;
 	int prior;
 	int order = 0;
 	char ID[256];
@@ -58,11 +58,13 @@ void DemoPQBySingleLinkedList() {
 	}
 	PrintPriorityQueue(p); cout << endl;
 
+	// Extract
 	pref res = Extract(p);
 	free(res->ID); delete res;
 	cout << "After extracting. ";
 	PrintPriorityQueue(p); cout << endl;
 
+	// Remove
 	cout << "Enter ID of the element you want to remove.\n\tID = ";
 	cin >> ws;
 	scanf("%[^\n]s", ID);
@@ -70,6 +72,7 @@ void DemoPQBySingleLinkedList() {
 	cout << "After removing the element have ID(" << ID << "). ";
 	PrintPriorityQueue(p); cout << endl;
 
+	// Change priority
 	cout << "Enter information of the element you want to change priority.\n\tID = ";
 	cin >> ws;
 	scanf("%[^\n]s", ID);
@@ -80,7 +83,7 @@ void DemoPQBySingleLinkedList() {
 	PrintPriorityQueue(p); cout << endl;
 }
 
-void releaseList(PQBSLL& p) {
+void releaseMemory(PQBSLL& p) {
 	if (isEmpty(p))
 		return;
 
@@ -163,14 +166,14 @@ void changePriority(PQBSLL& p, const char* ID, int priority) {
 			// Remove the changed node from the priority queue.
 			p1->priority = priority;
 			changed = p1;
-
 			p2->next = p1->next;
-
 			changed->next = NULL;
+
 			break;
 		}
 
-	if (!p1)	// If doesn't exist ID -> return
+	// If this queue doesn't exist ID -> return
+	if (!p1)	
 		return;
 
 	// Insert the changed node into the priority queue.

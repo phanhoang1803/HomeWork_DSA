@@ -17,7 +17,9 @@ pref getNode(const char* ID, int priority);
 void initPQBSLL(PQBSLL& p);
 void PrintPriorityQueue(PQBSLL p);
 void DemoPQBySingleLinkedList();
-void releaseList(PQBSLL& p);
+void releaseMemory(PQBSLL& p);
+
+//------------------------//
 
 bool isEmpty(PQBSLL p);
 void Insert(PQBSLL p, const char* ID, int priority);
