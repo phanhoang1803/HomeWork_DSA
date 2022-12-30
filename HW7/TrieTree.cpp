@@ -41,7 +41,7 @@ void displayVector(vector<string> obj) {
 		cout << i + 1 << ": " << obj[i] << endl;
 }
 
-void releaseTrieTree(TrieNode*& Dic) {
+void releaseMemory(TrieNode*& Dic) {
 	if (!Dic)
 		return;
 
@@ -52,9 +52,9 @@ void releaseTrieTree(TrieNode*& Dic) {
 	}
 
 	for (int i = 0; i < 26; i++)
-		releaseTrieTree(Dic->next[i]);
+		releaseMemory(Dic->next[i]);
 
-	// after delete all subtrees,
+	// After delete all subtrees,
 	// we need to delete the root.
 	delete Dic;
 	Dic = NULL;
@@ -64,7 +64,7 @@ void releaseTrieTree(TrieNode*& Dic) {
 //-------------------------------//
 
 void Insert(TrieNode*& Dic, string word, int ID) {
-	// TrieTree just display words that have characters lowercase alphabet
+	// TrieTree just display words that have characters lowercase alphabet.
 	string pattern = "[a-z]*";
 	if (!regex_match(word, regex(pattern)))
 		return;
@@ -74,8 +74,8 @@ void Insert(TrieNode*& Dic, string word, int ID) {
 
 	TrieNode* current = Dic;
 	for (int i = 0; i < word.size(); i++) {
-		// If there is no word[i] -> add word[i]
-		// then move to word[i]
+		// If there is no word[i] -> add word[i],
+		// and then move to word[i]
 		if (current->next[word[i] - 'a'] == NULL)
 			current->next[word[i] - 'a'] = getNode();
 		current = current->next[word[i] - 'a'];
@@ -100,7 +100,7 @@ void createTrie(TrieNode*& Dic, string dicFile) {
 	// Format each line: word ID
 	string word;
 	int ID;
-	// Read data and insert into the TrieTree
+	// Read data and insert data into the TrieTree
 	while (!is.eof()) {
 		is >> word;
 		is >> ID;
@@ -129,7 +129,7 @@ vector<string> lookUpPrefix(TrieNode* Dic, string prefix) {
 	vector<string> res;
 
 	if (!Dic)
-		return res; // Empty vector.
+		return res;
 
 	TrieNode* current = Dic;
 	int i = 0;
@@ -141,10 +141,12 @@ vector<string> lookUpPrefix(TrieNode* Dic, string prefix) {
 	// The above loop stop when (i == sizeOfPrefix || current == NULL)
 	if (i == sizeOfPrefix) { // i.e: exist words that have this prefix in the TrieTree
 		string word = "";
+
 		// Current node is leaf of prefix.
 		// Get all words in the dictionary with root = current.
 		getAllWordsInDictionary(current, res, word);
 		
+		// Print prefix + word of TrieTree(root = current).
 		for (int i = 0; i < res.size(); i++)
 			res[i] = prefix + res[i];
 	}
@@ -152,8 +154,6 @@ vector<string> lookUpPrefix(TrieNode* Dic, string prefix) {
 	return res;
 }
 void Remove(TrieNode*& Dic, string word, int depth) {
-	// word: [a b c d e f]
-
 	if (!Dic)
 		return;
 
@@ -161,8 +161,8 @@ void Remove(TrieNode*& Dic, string word, int depth) {
 	if (depth == word.size()) {
 		Dic->ID = 0;		// Delete word.
 
-		if (isLeaf(Dic))	// If we have come to the leaves, we need to release memory.
-		{
+		// If we have come to the leaves, we need to release memory.
+		if (isLeaf(Dic)) {
 			delete Dic;
 			Dic = NULL;	
 		}
@@ -173,8 +173,8 @@ void Remove(TrieNode*& Dic, string word, int depth) {
 	// Delete all characters except for the first char of word.
 	Remove(Dic->next[word[depth] - 'a'], word,depth + 1);
 
-	// Delete the first char of word,
-	// if this character is a leaf or not a end character of the word.
+	// Delete the first char of word
+	// if this character is a leaf or not the end character of the word.
 	if (isLeaf(Dic) && Dic->ID == 0) {
 		delete Dic;
 		Dic = NULL;

@@ -3,16 +3,15 @@
 
 typedef struct TrieNode* tref;
 struct TrieNode {
-	int ID;					// If ID != 0 -> Is last char of word
+	int ID;					// If ID != 0 -> It is the last char of word
 	TrieNode* next[26];
 };
-
 
 TrieNode* getNode();
 bool isLeaf(tref node);
 void getAllWordsInDictionary(TrieNode* Dic, vector<string>& result, string& word);
 void displayVector(vector<string> obj);
-void releaseTrieTree(TrieNode*& Dic);
+void releaseMemory(TrieNode*& Dic);
 
 //-------------------------------//
 

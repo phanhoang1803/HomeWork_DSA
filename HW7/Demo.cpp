@@ -47,6 +47,10 @@ void demo() {
 		case 3:
 			cout << "\n\tEnter a word need to search: ";
 			cin >> word;
+			if (!lookUp(dic, word)) {
+				cout << "The dictionary doesn't have this word.\n";
+				break;
+			}
 			cout << "Word \"" << word << "\" has ID: " << lookUp(dic, word) << endl;
 			break;
 		case 4:
@@ -68,7 +72,7 @@ void demo() {
 			displayVector(wordList);
 			break;
 		default:
-			releaseTrieTree(dic);
+			releaseMemory(dic);
 			return;
 		}
 	}
