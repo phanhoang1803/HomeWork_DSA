@@ -72,7 +72,7 @@ void DataProcessing::displayOutput() {
 string DataProcessing::calculateNumSubsAndTime(string text, string pattern, int(*p)(string, string)) {
 	stringstream builder;
 
-	// Calculate running time of the algorithm.
+	// Calculate the running time of the algorithm.
 	clock_t start = clock();
 	builder << p(text, pattern);
 	clock_t end = clock();
@@ -81,6 +81,6 @@ string DataProcessing::calculateNumSubsAndTime(string text, string pattern, int(
 
 	builder << " - " << duration;
 
-	// Return the result string will be printed on the console.
+	// Return the res string will be printed on the console.
 	return builder.str();
 }
