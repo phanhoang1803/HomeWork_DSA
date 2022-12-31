@@ -31,6 +31,7 @@ void readCommand(int argc, char* argv[]) {
 		for (int i = 4; i < argc; i++)
 			numberList.push_back(stoi(sargv[i]));
 		dp.makeSparseTable(tableName, tableType, numberList);
+		dp.printTable(tableName);
 	}
 	// Query table
 	else if (request == "query") {

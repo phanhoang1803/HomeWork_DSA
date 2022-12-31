@@ -19,6 +19,7 @@ private:
 public:
 	void writeTables();
 	bool readTables();
+	void printTable(string tableName);
 
 	void makeSparseTable(string tableName, string tableType, vector<int> numberList);
 	int querySparseTable(string tableName, int L, int R);

@@ -8,6 +8,14 @@ SparseTable::SparseTable(int rows, int cols) {
 		_ST[i].resize(_cols);
 }
 
+void SparseTable::print() {
+	for (int i = 0; i < _rows; i++) {
+		for (int j = 0; j < _cols; j++)
+			cout << _ST[i][j] << " ";
+		cout << endl;
+	}
+}
+
 void SparseTable::makeSparseTable(vector<int> data, int (*p)(int, int)) {
 	_rows = data.size();
 	_cols = log2(_rows) + 1;

@@ -13,6 +13,7 @@ public:
 	SparseTable() {};
 	SparseTable(int rows, int cols);
 
+	void print();
 	void makeSparseTable(vector<int> data, int (*p)(int, int));
 	int query(int L, int R, int (*p)(int, int));
 };

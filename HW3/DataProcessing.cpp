@@ -56,6 +56,15 @@ bool DataProcessing::readTables() {
 	reader.close();
 }
 
+void DataProcessing::printTable(string tableName) {
+	for (int i = 0; i < _tableNames.size(); i++) {
+		if (_tableNames[i] == tableName) {
+			_stl[i].print();
+			break;
+		}
+	}
+}
+
 void DataProcessing::makeSparseTable(string tableName, string tableType, vector<int> numberList) {
 	readTables();
 
