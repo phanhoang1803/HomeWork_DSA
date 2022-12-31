@@ -65,10 +65,11 @@ void removeHead(List*& l) {
 	}
 	else 
 	{
+		//isolate the head
 		l->p_tail->p_next = l->p_head->p_next;
 		NODE* q = l->p_head;
 		l->p_head = l->p_head->p_next;
-		//delete head = delete q
+		//deleting head by deleting q
 		q->p_next = NULL;
 		delete q;
 	}
@@ -101,7 +102,7 @@ void removeTail(List*& l) {
 		}
 		run->p_next = l->p_head;
 		l->p_tail = run;
-		//delete old p_tail after assigning successfully new p_tail
+		//delete old p_tail after assigning successfully new p_t6il
 		q->p_next = NULL;
 		delete q;
 	}
