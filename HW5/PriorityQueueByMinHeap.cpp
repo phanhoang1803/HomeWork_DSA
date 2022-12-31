@@ -24,34 +24,48 @@ void DemoPQByMinHeap() {
 	int prior;
 	int order = 0;
 
+	vector<string> IDs = { "a sad", "c", "b", "d", "e", "f", "g" };
+	vector<int> priority = { 10,9,8,7,15,20,5 };
+
 	cout << "\tThe program demo functions in priority queue using MIN-HEAP.\n";
 	cout << "\tATTENTION: The element with lower priority value is higher priority.\n";
 
-	cout << "\nInsert priority queue. (Enter priority = 0 to quit).\n\n";
-	while (1) {
-		cout << "Element " << order++ << ": " << endl;
-		
-		cout << "\tID = ";
-		cin >> ws;
-		getline(cin, ID);
-
-		cout << "\tPriority = ";
-		cin >> prior;
-		if (prior == 0)
-			break;
-
-		Insert(p, ID, prior);
-	}
+	
+	for (int i = 0; i < IDs.size(); i++)
+		Insert(p, IDs[i], priority[i]);
 	PrintPriorityQueue(p); cout << endl;
 
-	while (1) {
-		cout << "Enter ID of the element you want to remove.\n\tID = ";
-		cin >> ws;
-		getline(cin, ID);
-		Remove(p, ID);
-		cout << "After removing the element have ID(" << ID << "). ";
-		PrintPriorityQueue(p); cout << endl;
-	}
+	// Insert
+	cout << "\nInsert priority queue.\n";
+	cout << "\tID = ";
+	cin >> ws;
+	getline(cin, ID);
+	cout << "\tPriority = ";
+	cin >> prior;
+	PrintPriorityQueue(p); cout << endl;
+
+	// Extract
+	Extract(p);
+	cout << "After extracting. ";
+	PrintPriorityQueue(p); cout << endl;
+
+	// Remove
+	cout << "Enter ID of the element you want to remove.\n\tID = ";
+	cin >> ws;
+	getline(cin, ID);
+	Remove(p, ID);
+	cout << "After removing the element have ID(" << ID << "). ";
+	PrintPriorityQueue(p); cout << endl;
+
+	// Change priority
+	cout << "Enter information of the element you want to change priority.\n\tID = ";
+	cin >> ws;
+	getline(cin, ID);
+	cout << "\tPriority = ";
+	cin >> prior;
+	changePriority(p, ID, prior);
+	cout << "After changing the priority of the element have ID(" << ID << "). ";
+	PrintPriorityQueue(p); cout << endl;
 }
 
 void MinHeapify(vector<Information>& heap, int l, int r) {

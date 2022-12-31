@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
-
 #include "PriorityQueueBySingleLinkedList.h"
+#include <iostream>
 
 pref getNode(const char* ID, int priority) {
 	static int countOrder = -1;
@@ -34,28 +34,23 @@ void DemoPQBySingleLinkedList() {
 	int order = 0;
 	char ID[256];
 
+	char a[7][256] = { "a sad", "c", "b", "d", "e", "f", "g" };
+	vector<int> priority = { 10,9,8,7,15,20,5 };
+
 	cout << "\tThe program demo functions in priority queue using SINGLE LINKED LIST.\n";
 	cout << "\tATTENTION: The element with lower priority value is higher priority.\n";
+	
+	for (int i = 0; i < 7; i++)
+		Insert(p, a[i], priority[i]);
+	PrintPriorityQueue(p); cout << endl;
 
-	cout << "\nInsert priority queue. (Enter priority = 0 to quit).\n\n";
-	while (1) {
-		cout << "Element " << order++ << ": " << endl;
-
-		cout << "\tID = ";
-		cin >> ws;
-		scanf("%[^\n]s", ID);
-
-		cout << "\tPriority = ";
-		cin >> ws;
-		cin >> prior;
-
-		if (prior == 0)
-			break;
-
-		Insert(p, ID, prior);
-
-		//free(ID);
-	}
+	cout << "\nInsert priority queue.";
+	cout << "\n\tID = ";
+	cin >> ws;
+	scanf("%[^\n]s", ID);
+	cout << "\tPriority = ";
+	cin >> prior;
+	Insert(p, ID, prior);
 	PrintPriorityQueue(p); cout << endl;
 
 	// Extract
