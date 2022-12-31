@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include "Struct.h"
+#include "RadixSortStruct.h"
 
 using namespace std;
 
