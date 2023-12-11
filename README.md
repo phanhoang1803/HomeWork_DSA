@@ -7,6 +7,6 @@ The assignments are in the attached HW.pdf file.
 
 
 
-# Contributing ingredients:
+# Contributors:
    1. Phan Van Hoang - 21CNTN - HCMUS
    2. Pham Long Khanh - 21CNTN - HCMUS
